@@ -42,7 +42,7 @@ corr_17 = df["subscribers_for_last_30_days"].corr(df["unemployment_rate"])
 views_30_type = df.groupby("channel_type")["video_views_for_the_last_30_days"].mean()
 seasonal_uploads = df.groupby(df["created_date"].dt.month)["uploads"].sum()
 today = pd.to_datetime("today")
-df["months_since_creation"] = ((today - df["created_date"]) / np.timedelta64(1, "M")).round(1)
+df["months_since_creation"] = ((today - df["created_date"]) / np.timedelta64(1, "W")).round(1)
 df["avg_subs_per_month"] = df["subscribers"] / df["months_since_creation"]
 avg_subs_per_month = df["avg_subs_per_month"].mean()
 print("Top 10 Channels:\n", top_10_subs[["youtuber", "subscribers"]])
